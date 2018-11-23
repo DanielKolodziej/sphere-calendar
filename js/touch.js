@@ -1,3 +1,4 @@
+/*gen notes-> possible to refactor*/
 //global variables to manipulate the calendar, (touch)menu, and menu's button
 const cal = document.getElementById('calendar');
 const menu = document.querySelector('.touchmenu');
@@ -45,25 +46,19 @@ function confirmTime(){
         let starter = false;
         //stopper used as additonal condition in loop to stop checking true
         let stopper = false
+        //first for loop to create collection for each day, 2nd to loop through each collection
         for(let i = 0; i < days.length; i++){
             for(let j = 0; j < days[i].getElementsByTagName('input').length; j++){
-                // if the current checkbox matches start, mark checkbox true
-                /*
-                if (start === days[i].getElementsByTagName('input')[j].getAttribute('id')){
-                    days[i].getElementsByTagName('input')[j].checked = true;
-                }
-                //if the current checkbox matches end, mark checkbox true
-                /*
-                if (end === days[i].getElementsByTagName('input')[j].getAttribute('id')){
-                    days[i].getElementsByTagName('input')[j].checked = true;
-                }*/
+                //checks if id matches start, if so starter true
                 if (start === days[i].getElementsByTagName('input')[j].getAttribute('id')){
                     days[i].getElementsByTagName('input')[j].checked = true;
                     starter = true;
                 }
+                //once starter is found and check next true until end is found
                 if(starter == true && stopper == false && days[i].getElementsByTagName('input')[j].getAttribute('id') != end){
                     days[i].getElementsByTagName('input')[j].checked = true;
                 }
+                //once end is found update stopper conditional
                 if(days[i].getElementsByTagName('input')[j].getAttribute('id') === end){
                     stopper = true;
                 }
